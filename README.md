@@ -1,8 +1,8 @@
 # JSON-PDFconversion
 
-#commands
+# commands
 npm install
 node demo.js
 
-#path
+# path
 localhost:3000/report.pdf
