@@ -8,14 +8,24 @@ const port = 3000;
 
 var json = fs.readFileSync('./data.json', 'utf8');
 var data = JSON.parse(json);
+headerData = {
+    name: 'Jane Doe',
+    gender: 'Female',
+    dob: '9 May, 1964',
+    examDate: '10 june, 2019'
+}
+
 
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => res.send("<a href='/report.pdf'>GET PDF FILE</a>"));
 
+
+
 app.get('/report.pdf', (req, res) => {
+
     var html;
-    ejs.renderFile('./views/home.ejs', { data: data }, function (err, result) {
+    ejs.renderFile('./views/home.ejs', { data, headerData }, function (err, result) {
         console.log(result);
         // render on success
         if (result) {
@@ -29,21 +39,21 @@ app.get('/report.pdf', (req, res) => {
         "width": "415mm",
 
         "header": {
-            "height": "60mm",
+            "height": "200px",
 
         },
         "footer": {
-            "height": "20mm",
+            "height": "75px",
             "contents": {
-                default: '<p style="text-align:center;">{{page}}<span>&nbsp;of&nbsp;</span>{{pages}}</p>', // fallback value
+                default: '<p style="text-align:center;">Page&nbsp;{{page}}<span>&nbsp;of&nbsp;</span>{{pages}}</p>', // fallback value
 
             }
         },
         "border": {
-            "top": "20px",            // default is 0, units: mm, cm, in, px
-            "right": "20px",
+            "top": "20px",
+            "right": "40px",
             "bottom": "20px",
-            "left": "20px"
+            "left": "40px"
         },
     }
     // pdf.create(html, options).toFile('/home/zadmin/Desktop/demonode1.pdf', function (err, res) {
@@ -55,8 +65,14 @@ app.get('/report.pdf', (req, res) => {
         if (err) return res.send(err);
         res.type('pdf');
         stream.pipe(res);
+
     });
+
+
+
 })
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 

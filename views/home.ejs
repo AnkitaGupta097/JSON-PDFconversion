@@ -4,52 +4,129 @@
 
     <style>
         .div {
-            width: 300px;
+            padding-right: 50px;
             display: inline-block;
-
+            font-weight: 600;
 
         }
 
         p {
             text-align: justify;
+            line-height: 1.5;
+        }
+
+        .title {
+            width: 100%;
+            text-align: center;
+            font-size: 17px;
+            margin: 10 0 10 0;
+        }
+
+        .poweredbytext {
+            font-size: 10px;
+            color: grey;
+
+        }
+
+        .logo {
+            height: 20px;
+        }
+
+        .container {
+            width: 100%;
+            text-align: center;
+            margin: 10 0 30 0;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+
+        }
+
+        .firstCol {
+            vertical-align: top;
+            font-weight: 600;
+        }
+
+        .secondCol {
+            vertical-align: top;
+            padding-bottom: 40px;
+
+        }
+
+        .sign {
+            font-weight: 600;
+            margin-top: 10px
+        }
+
+        table {
+            margin-top: 20px;
         }
     </style>
 </head>
 
-<body class="container">
+<body>
 
     <header id="pageHeader">
 
-        <img src="file:///home/zadmin/Desktop/nodehtmltopdf/mpowered-logo.svg" />
-        <br>
-        <h3>Mammography</h3>
+        <div>
+            <p class="title">Docpanel Second Opinion</p>
+            <div class="container">
+                <span class="poweredbytext">Powered By </span>
+                <img src="file:///home/zadmin/Desktop/nodehtmltopdf/mpowered-logo.svg" class="logo" />
+            </div>
+        </div>
 
-        <div class="div">Patient Name:&nbsp;&nbsp;&nbsp;Robert Smith</div>
-        <div class="div">Patient Age:&nbsp;&nbsp;&nbsp;40</div>
+        <hr />
 
+        <div style="margin:30 0 30 0;">
+            <div class="div">Patient Name:&nbsp;&nbsp;&nbsp;<%=headerData.name%>
+                <%if (headerData.gender==="Female") { %>
+                (F)
+                <% } else{ %>
+                (M)
+                <% }%>
+            </div>
+            <div class="div">DOB:&nbsp;&nbsp;&nbsp;<%=headerData.dob%></div>
+            <div class="div">EXAM DATE:&nbsp;&nbsp;&nbsp;<%=headerData.examDate%></div>
+        </div>
 
+        <hr />
     </header>
 
+    <main>
+        <h3>MAMMOGRAPPHY</h3>
+        <hr />
+        <table>
+            <% for(var i=0; i < data.sections.length; i++) { %>
+            <tr>
+                <td class="firstCol"><%- data.sections[i].title %></td>
+                <td class="secondCol"><%- data.sections[i].value %></td>
 
-    <hr>
-    <table>
-        <% for(var i=0; i < data.sections.length; i++) { %>
-        <tr>
-            <td style="vertical-align:top;"><%- data.sections[i].title %></td>
-            <td style="vertical-align:top;"><%- data.sections[i].value %></td>
+            </tr>
+            <% } %>
+        </table>
 
-        </tr>
-        <% } %>
-    </table>
-    <hr>
     </main>
 
+    <p style="margin-bottom: 40px;">
+        The above report was provided by the signing physician(s) at the request of the referring physician, patient or
+        patient representative as a second opinion or a consultation. The opinions and recommendations included therein
+        are provided on a strict advisory basis and are based on the clinical information, medical records, images or
+        other
+        data provided. Neither physician nor the company assume responsibility for any decisions made or actions taken
+        based on this report nor for any effects that result from such decisions and actions. The responsibility for
+        clinical
+        decisions remains entirely upon the patient's medical team. This information has been clearly communicated at
+        the
+        time of request of this second opinion.
+    </p>
 
-
+    <hr />
     <footer>
-        <div style="height:30px;display:flex;flex-direction:column;justify-content:center;">
-            <p>Electronically Signed By Dr John Miller:</p>
-        </div>
+
+        <p class="sign">Electronically Signed By Dr John Miller:</p>
+
     </footer>
 
 </body>
