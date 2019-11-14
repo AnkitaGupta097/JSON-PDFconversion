@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+
+    <style>
+        .div {
+            width: 300px;
+            display: inline-block;
+
+
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body class="container">
+
+    <header id="pageHeader">
+
+        <img src="file:///home/zadmin/Desktop/nodehtmltopdf/mpowered-logo.svg" />
+        <br>
+        <h3>Mammography</h3>
+
+        <div class="div">Patient Name:&nbsp;&nbsp;&nbsp;Robert Smith</div>
+        <div class="div">Patient Age:&nbsp;&nbsp;&nbsp;40</div>
+
+
+    </header>
+
+
+    <hr>
+    <table>
+        <% for(var i=0; i < data.sections.length; i++) { %>
+        <tr>
+            <td style="vertical-align:top;"><%- data.sections[i].title %></td>
+            <td style="vertical-align:top;"><%- data.sections[i].value %></td>
+
+        </tr>
+        <% } %>
+    </table>
+    <hr>
+    </main>
+
+
+
+    <footer>
+        <div style="height:30px;display:flex;flex-direction:column;justify-content:center;">
+            <p>Electronically Signed By Dr John Miller:</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
