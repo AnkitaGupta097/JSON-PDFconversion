@@ -2,6 +2,7 @@
 
 # commands
 npm install
+
 node demo.js
 
 # path
